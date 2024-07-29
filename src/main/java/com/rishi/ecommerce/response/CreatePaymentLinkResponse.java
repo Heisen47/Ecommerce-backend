@@ -1,2 +1,4 @@
-package com.rishi.ecommerce.response;public class CreatePaymentLinkResponse {
+package com.rishi.ecommerce.response;
+
+public class CreatePaymentLinkResponse {
 }

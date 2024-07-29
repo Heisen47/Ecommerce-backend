@@ -1,11 +1,13 @@
 package com.rishi.ecommerce.controller;
 
-import com.rishi.ecommerce.config.JwtProvider;
+import com.rishi.ecommerce.config.JwtTokenProvider;
 import com.rishi.ecommerce.exception.UserException;
+import com.rishi.ecommerce.model.Cart;
 import com.rishi.ecommerce.model.User;
-import com.rishi.ecommerce.repository.UserRepo;
+import com.rishi.ecommerce.repository.UserRepository;
 import com.rishi.ecommerce.request.LoginRequest;
 import com.rishi.ecommerce.response.AuthResponse;
+import com.rishi.ecommerce.service.CartService;
 import com.rishi.ecommerce.service.CustomUserServiceImplementation;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,17 +26,21 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/auth")
 public class AuthController {
 
-    private UserRepo userRepo;
-    private JwtProvider jwtProvider;
+    private UserRepository userRepo;
+    private JwtTokenProvider jwtProvider;
     private PasswordEncoder passwordEncoder;
 
     private CustomUserServiceImplementation customUserServiceImplementation;
+    private CartService cartService;
 
-    public AuthController(UserRepo userRepo , CustomUserServiceImplementation customUserServiceImplementation, PasswordEncoder passwordEncoder,JwtProvider jwtProvider){
+
+
+    public AuthController(UserRepository userRepo , CustomUserServiceImplementation customUserServiceImplementation, PasswordEncoder passwordEncoder, JwtTokenProvider jwtProvider, CartService cartService){
         this.userRepo = userRepo;
         this.customUserServiceImplementation = customUserServiceImplementation;
         this.passwordEncoder = passwordEncoder;
         this.jwtProvider = jwtProvider;
+        this.cartService = cartService;
     }
 
     @PostMapping("/signup")
@@ -57,6 +63,7 @@ public class AuthController {
         createdUser.setLastName(lastName);
 
         User savedUser = userRepo.save(createdUser);
+        Cart cart = cartService.createCart(savedUser);
 
         Authentication authentication = new UsernamePasswordAuthenticationToken(savedUser.getEmail(),savedUser.getPassword());
         SecurityContextHolder.getContext().setAuthentication(authentication);
@@ -95,11 +102,11 @@ public class AuthController {
         UserDetails userDetails = customUserServiceImplementation.loadUserByUsername(username);
 
         if(userDetails == null){
-            throw new BadCredentialsException("UserName is invalid!");
+            throw new BadCredentialsException("UserName is invalid! ......");
         }
 
         if(!passwordEncoder.matches(password,userDetails.getPassword())){
-            throw new BadCredentialsException("Password is Invalid");
+            throw new BadCredentialsException("Password is Invalid ......");
         }
 
         return new UsernamePasswordAuthenticationToken(userDetails , null,userDetails.getAuthorities());

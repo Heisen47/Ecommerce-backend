@@ -17,36 +17,53 @@ import java.util.Collections;
 
 @Configuration
 public class AppConfig {
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
 
-        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-        .authorizeHttpRequests(Authorize-> Authorize.requestMatchers("/api/**").authenticated().anyRequest().permitAll()).
-                addFilterBefore(new JwtValidator(), BasicAuthenticationFilter.class).csrf().disable().cors()
-                .configurationSource((new CorsConfigurationSource() {
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+
+        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .authorizeHttpRequests(Authorize -> Authorize
+                        .requestMatchers("/api/**").authenticated()
+                        .anyRequest().permitAll()
+                )
+                .addFilterBefore(new JwtTokenValidator(), BasicAuthenticationFilter.class)
+                .csrf().disable()
+                .cors().configurationSource(new CorsConfigurationSource() {
+
                     @Override
                     public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
 
                         CorsConfiguration cfg = new CorsConfiguration();
+
                         cfg.setAllowedOrigins(Arrays.asList(
-                                "http://localhost:3000"
-                        ));
+
+                                        "http://localhost:3000",
+                                        "https://ecommerce-frontend-rosy.vercel.app"
+                                )
+                        );
+                        //cfg.setAllowedMethods(Arrays.asList("GET", "POST","DELETE","PUT"));
                         cfg.setAllowedMethods(Collections.singletonList("*"));
                         cfg.setAllowCredentials(true);
                         cfg.setAllowedHeaders(Collections.singletonList("*"));
                         cfg.setExposedHeaders(Arrays.asList("Authorization"));
                         cfg.setMaxAge(3600L);
                         return cfg;
+
                     }
-                }))
-                .and().httpBasic().and().formLogin();
+                })
+                .and()
+                .httpBasic()
+                .and()
+                .formLogin();
 
         return http.build();
+
     }
 
-    //Password encoding
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
 }

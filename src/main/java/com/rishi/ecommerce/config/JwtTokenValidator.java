@@ -20,7 +20,7 @@ import javax.crypto.SecretKey;
 import java.io.IOException;
 import java.util.List;
 
-public class JwtValidator extends OncePerRequestFilter {
+public class JwtTokenValidator extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
@@ -42,9 +42,9 @@ public class JwtValidator extends OncePerRequestFilter {
                 String authorities=String.valueOf(claims.get("authorities"));
 
                 List<GrantedAuthority> auths=AuthorityUtils.commaSeparatedStringToAuthorityList(authorities);
-                Authentication athentication=new UsernamePasswordAuthenticationToken(email,null, auths);
+                Authentication authentication=new UsernamePasswordAuthenticationToken(email,null, auths);
 
-                SecurityContextHolder.getContext().setAuthentication(athentication);
+                SecurityContextHolder.getContext().setAuthentication(authentication);
 
             } catch (Exception e) {
                 // TODO: handle exception

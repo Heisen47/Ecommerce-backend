@@ -3,8 +3,11 @@ package com.rishi.ecommerce.repository;
 import com.rishi.ecommerce.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepo extends JpaRepository<User,Long> {
+import java.util.List;
+
+public interface UserRepository extends JpaRepository<User,Long> {
 
     public User findByEmail(String email);
 
+    public List<User> findAllByOrderByCreatedAtDesc();
 }

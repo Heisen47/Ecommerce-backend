@@ -1,2 +1,9 @@
-package com.rishi.ecommerce.exception;public class CartItemException {
+package com.rishi.ecommerce.exception;
+
+public class CartItemException extends Exception {
+
+    public CartItemException (String message){
+        super(message);
+    }
+
 }

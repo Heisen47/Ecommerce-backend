@@ -1,7 +1,7 @@
 package com.rishi.ecommerce.service;
 
 import com.rishi.ecommerce.model.User;
-import com.rishi.ecommerce.repository.UserRepo;
+import com.rishi.ecommerce.repository.UserRepository;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -14,9 +14,9 @@ import java.util.List;
 @Service
 public class CustomUserServiceImplementation implements UserDetailsService {
 
-    private UserRepo userRepo;
+    private UserRepository userRepo;
 
-    public CustomUserServiceImplementation(UserRepo userRepo ){
+    public CustomUserServiceImplementation(UserRepository userRepo ){
         this.userRepo=userRepo;
     }
 

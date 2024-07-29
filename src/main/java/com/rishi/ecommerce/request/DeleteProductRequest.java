@@ -1,2 +1,4 @@
-package com.rishi.ecommerce.request;public class DeleteProductRequest {
+package com.rishi.ecommerce.request;
+
+public class DeleteProductRequest {
 }

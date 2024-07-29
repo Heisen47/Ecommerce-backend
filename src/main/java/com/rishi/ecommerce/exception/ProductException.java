@@ -1,2 +1,9 @@
-package com.rishi.ecommerce.exception;public class ProductException {
+package com.rishi.ecommerce.exception;
+
+public class ProductException extends Exception {
+
+    public ProductException (String message){
+        super(message);
+    }
+
 }
