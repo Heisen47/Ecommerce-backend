@@ -53,33 +53,33 @@ Swagger documentation is available at http://localhost:8080/swagger-ui.html.
 Drag and drop the file Ecommerce Api.postman_collection to postman to get all the API collections for testing
 
 # GET
-http://localhost:8080/api/users/profile
-http://localhost:8080/api/products
-http://localhost:8080/api/products/1
-http://localhost:8080/api/cart/
-http://localhost:8080/api/payments/pay_LodIH9EjCig5re
-http://localhost:8080/api/orders/user
-http://localhost:8080/api/orders/651943b7ceba9c53baa42bfa
-http://localhost:8080/api/admin/products/creates
-http://localhost:8080/api/users
+- http://localhost:8080/api/users/profile
+- http://localhost:8080/api/products
+- http://localhost:8080/api/products/1
+- http://localhost:8080/api/cart/
+- http://localhost:8080/api/payments/pay_LodIH9EjCig5re
+- http://localhost:8080/api/orders/user
+- http://localhost:8080/api/orders/651943b7ceba9c53baa42bfa
+- http://localhost:8080/api/admin/products/creates
+- http://localhost:8080/api/users
 
 # POST
-http://localhost:8080/auth/signup
-http://localhost:8080/auth/signin
-http://localhost:8080/api/admin/products/
-http://localhost:8080/api/orders/
-http://localhost:8080/api/payments/651943b7ceba9c53baa42bfa
-https://ecommerce-server-production-7ba8.up.railway.app/api/admin/products/creates
-http://localhost:8080/auth/reset-password
-http://localhost:8080/auth/request-reset-password
+- http://localhost:8080/auth/signup
+- http://localhost:8080/auth/signin
+- http://localhost:8080/api/admin/products/
+- http://localhost:8080/api/orders/
+- http://localhost:8080/api/payments/651943b7ceba9c53baa42bfa
+- https://ecommerce-server-production-7ba8.up.railway.app/api/admin/products/creates
+- http://localhost:8080/auth/reset-password
+- http://localhost:8080/auth/request-reset-password
 
 # PUT
-http://localhost:8080/user/new_address/1
-http://localhost:8080/api/cart/add
-http://localhost:8080/api/cart_items/7
-http://localhost:8080/api/admin/orders/6519292953b3b6194285ac35/confirmed
+- http://localhost:8080/user/new_address/1
+- http://localhost:8080/api/cart/add
+- http://localhost:8080/api/cart_items/7
+- http://localhost:8080/api/admin/orders/6519292953b3b6194285ac35/confirmed
 
 # DELETE
-http://localhost:8080/api/admin/orders/2/delete
+- http://localhost:8080/api/admin/orders/2/delete
 
 
